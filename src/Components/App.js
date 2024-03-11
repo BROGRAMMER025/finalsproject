@@ -26,8 +26,7 @@ function App() {
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to Home Page</h1>
-      {/* Add any content you want for the home page */}
+      
     </div>
   );
 }
