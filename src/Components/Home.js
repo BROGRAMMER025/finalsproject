@@ -42,8 +42,12 @@ function Home() {
 
         {/* Background Image */}
         <Row>
-          <Col>
-            <img src="/maarten-van-den-heuvel-246398-unsplash.jpg" alt="background" style={{ width: '100%', height: '100vh', objectFit: 'cover' }} />
+          <Col className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+            <Card className="text-center" style={{ width: '300px', borderRadius: '20px', backgroundColor: '#800000' }}>
+              <Card.Body>
+                <p className="text-white m-0">Order Now</p>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
 
