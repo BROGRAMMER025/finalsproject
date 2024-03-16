@@ -1,10 +1,12 @@
 import React from 'react';
 
+
 import ContactForm from './ContactForm'; 
 import NavBar from './NavBar';
 import Parcel from './Parcel';
 import Home from './Home';
 import Login from './Login';
+import Orders from './Orders';
 
 
 
@@ -23,6 +25,7 @@ function App() {
         <Route path="/contact" component={ContactForm} /> {/* Define Contact route */}
         <Route path="/parcel" component= {Parcel}/>
         <Route path="/login" component={Login} />
+        <Route path="/orders" component={Orders}/>
        
        
         

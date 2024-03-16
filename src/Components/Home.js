@@ -43,11 +43,13 @@ function Home() {
         {/* Background Image */}
         <Row>
           <Col className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <Card className="text-center" style={{ width: '300px', borderRadius: '20px', backgroundColor: '#800000' }}>
-              <Card.Body>
-                <p className="text-white m-0">Order Now</p>
-              </Card.Body>
-            </Card>
+            <Link to="/orders"> {/* Use Link component to navigate to Orders component */}
+              <Card className="text-center" style={{ width: '300px', borderRadius: '20px', backgroundColor: '#800000' }}>
+                <Card.Body>
+                  <p className="text-white m-0">Order Now</p>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         </Row>
 
