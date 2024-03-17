@@ -14,6 +14,8 @@ function Orders({ refresh, setRefresh }) {
     price: 0,
   });
 
+  const [orderSubmitted, setOrderSubmitted] = useState(false);
+
   const handleChange = (e) => {
     const newWeight = e.target.value;
     const calculatedPrice = parseInt(newWeight, 10) * 150;
@@ -37,20 +39,16 @@ function Orders({ refresh, setRefresh }) {
     })
       .then((response) => {
         if (response.status === 201) {
-          return response.json();
+          setOrderSubmitted(true);
+          enqueueSnackbar('Order submitted successfully', { variant: 'success' });
         } else if (response.status === 401) {
-          enqueueSnackbar('You must be logged in to create an order', {
+          enqueueSnackbar('Unauthorized access. Please log in.', {
             variant: 'error',
           });
           window.location.href = '/login'; // Redirect to login page
-          return Promise.reject('Not logged in');
+        } else {
+          enqueueSnackbar('Failed to submit order', { variant: 'error' });
         }
-      })
-      .then((data) => {
-        setOrderData(data);
-        setRefresh(!refresh);
-        enqueueSnackbar('Order created successfully', { variant: 'success' });
-        window.location.href = '/tracker'; // Redirect to tracker page
       })
       .catch((error) => {
         console.error('Error:', error.message);
@@ -127,6 +125,13 @@ function Orders({ refresh, setRefresh }) {
                   Place Order
                 </Button>
               </Form>
+              {orderSubmitted && (
+                <Card className="mt-3">
+                  <Card.Body>
+                    <Card.Title className="text-center">Order Submitted Successfully</Card.Title>
+                  </Card.Body>
+                </Card>
+              )}
             </Card.Body>
           </Card>
         </Col>

@@ -1,9 +1,15 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Home() {
+  const [showStatus, setShowStatus] = useState(false);
+
+  const handleSearch = () => {
+    // Logic to fetch status from backend and update state
+    setShowStatus(true);
+  };
+
   return (
     <div style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/mehrnaz-taghavishavazi-tHE5_sUytWA-unsplash.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
       <Container fluid>
@@ -21,7 +27,7 @@ function Home() {
               <Card.Body>
                 <Form className="d-flex">
                   <Form.Control type="text" placeholder="Track your package" className="me-2" />
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="button" onClick={handleSearch}>
                     <i className="bi bi-search"></i> {/* Bootstrap Icons search icon */}
                   </Button>
                 </Form>
@@ -53,6 +59,22 @@ function Home() {
             </Link>
           </Col>
         </Row>
+
+        {/* Status Card */}
+        {showStatus && (
+          <Row className="justify-content-center mt-3">
+            <Col md={6}>
+              <Card>
+                <Card.Body>
+                  <h5>Current Status:</h5>
+                  {/* Logic to display actual status fetched from backend */}
+                  <p>Status: In Transit</p>
+                  <p>ETA: 2 days</p>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        )}
 
         {/* Footer */}
         <footer className="footer" style={{ backgroundColor: '#010101', color: 'white', marginTop: '50px' }}>
