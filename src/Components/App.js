@@ -7,7 +7,7 @@ import Parcel from './Parcel';
 import Home from './Home';
 import Login from './Login';
 import Orders from './Orders';
-
+import OrdersUpdate from './OrdersUpdate';
 
 
 
@@ -31,6 +31,7 @@ function App() {
         <Route path="/parcel" component= {Parcel}/>
         <Route path="/login" component={Login} />
         <Route path="/orders" component={Orders}/>
+        <Route path ="/ordersupdate" component={OrdersUpdate}/>
        
        
         
