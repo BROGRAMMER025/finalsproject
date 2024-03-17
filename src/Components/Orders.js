@@ -6,10 +6,10 @@ function Orders({ refresh, setRefresh }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const [orderData, setOrderData] = useState({
-    name_of_parcel: '',
-    destination: '',
-    current_location: '',
-    pickup: '',
+    name: '',
+    description:'',
+    destination_location: '',
+    pickup_location: '',
     weight: '',
     price: 0,
   });
@@ -66,43 +66,45 @@ function Orders({ refresh, setRefresh }) {
                 e.preventDefault();
                 handleSubmit();
               }}>
-                <Form.Group controlId="name_of_parcel">
+                <Form.Group controlId="name">
                   <Form.Label>Name of Parcel:</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    name="name_of_parcel"
-                    value={orderData.name_of_parcel}
+                    name="name"
+                    value={orderData.name}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group controlId="destination">
+
+                <Form.Group controlId="description">
+                  <Form.Label>Parcel Description:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    name="description"
+                    value={orderData.description}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group controlId="destination_location">
                   <Form.Label>Destination:</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    name="destination"
-                    value={orderData.destination}
+                    name="destination_location"
+                    value={orderData.destination_location}
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group controlId="current_location">
-                  <Form.Label>Current Location:</Form.Label>
+                
+                <Form.Group controlId="pickup_location">
+                  <Form.Label>Pickup Location:</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    name="current_location"
-                    value={orderData.current_location}
-                    onChange={handleChange}
-                  />
-                </Form.Group>
-                <Form.Group controlId="pickup">
-                  <Form.Label>Pickup:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    name="pickup"
-                    value={orderData.pickup}
+                    name="pickup_location"
+                    value={orderData.pickup_location}
                     onChange={handleChange}
                   />
                 </Form.Group>
