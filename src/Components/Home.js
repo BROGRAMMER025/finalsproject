@@ -1,10 +1,11 @@
+
 import React from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/mehrnaz-taghavishavazi-tHE5_sUytWA-unsplash.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
       <Container fluid>
         {/* Navbar */}
         <Row>
@@ -34,7 +35,7 @@ function Home() {
           <Col>
             <Card className="bg-dark text-white">
               <Card.Body className="d-flex justify-content-center align-items-center" style={{ height: '12.5vh' }}>
-                <p className="m-0 fs-4 text-black">Delivering Excellence, One Package at a Time!</p>
+                <p className="m-0 fs-4 text-white">Delivering Excellence, One Package at a Time!</p>
               </Card.Body>
             </Card>
           </Col>
@@ -44,7 +45,7 @@ function Home() {
         <Row>
           <Col className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
             <Link to="/orders"> {/* Use Link component to navigate to Orders component */}
-              <Card className="text-center" style={{ width: '300px', borderRadius: '20px', backgroundColor: '#800000' }}>
+              <Card className="text-center" style={{ width: '300px', borderRadius: '20px', backgroundColor: ' #ff0000' }}>
                 <Card.Body>
                   <p className="text-white m-0">Order Now</p>
                 </Card.Body>
@@ -54,15 +55,38 @@ function Home() {
         </Row>
 
         {/* Footer */}
-        <Row className="mt-5">
-          <Col>
-            <Card className="bg-dark text-white">
-              <Card.Body className="d-flex justify-content-center align-items-center" style={{ height: '12.5vh' }}>
-                <p className="mb-0">SendiT 2024. All rights reserved. <i className="bi bi-copyright"></i></p> {/* Bootstrap Icons copyright icon */}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+        <footer className="footer" style={{ backgroundColor: '#010101', color: 'white', marginTop: '50px' }}>
+          <div className="container">
+            <div className="row">
+
+              <div className="col-md-3">
+                <p style={{ color: 'gray', display: 'inline-block', marginBottom: '40px', marginTop: '40px' }}>
+                  At SendIt, your delivery is our main priority. We obsess over customer satisfaction and getting your package there, wherever that may be.
+                </p>
+                <button className="btn btn-primary">ABOUT US</button>
+              </div>
+
+              <div className="col-md-3">
+                <h4 style={{ color: 'white', display: 'inline-block', marginBottom: '40px', marginTop: '40px' }}>
+                  <span style={{ position: 'relative', zIndex: 1, borderBottom: '4px solid #ff0000', paddingBottom: '10px' }}>ContactUs</span>
+                  <span style={{ position: 'relative', zIndex: 0, }}></span>
+                </h4>
+                <p style={{ color: 'gray' }}>Feel free to reach out to us at any moment</p>
+                <Link to="/contact"> {/* Use Link component to navigate to ContactForm component */}
+                  <button className="btn btn-primary">ContactUs</button>
+                </Link>
+              </div>
+
+              {/* Copyright Notice */}
+              <div className="row">
+                <div className="col-md-12 text-center" style={{ borderTop: '1px solid gray', marginTop: '40px', paddingTop: '20px', paddingBottom: '10px' }}>
+                  <p>© 2024 SendIt. All rights reserved.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+
       </Container>
     </div>
   );

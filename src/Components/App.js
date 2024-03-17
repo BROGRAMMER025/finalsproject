@@ -10,6 +10,8 @@ import Orders from './Orders';
 
 
 
+
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -18,9 +20,12 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 function App() {
   return (
     <Router>
-      <NavBar />
+      
+      <NavBar/>
       <Switch>
-        <Route exact path="/" component={Home} /> {/* Define Home route */}
+     
+        
+        <Route  exact path="/" component={Home} /> {/* Define Home route */}
         
         <Route path="/contact" component={ContactForm} /> {/* Define Contact route */}
         <Route path="/parcel" component= {Parcel}/>
@@ -30,6 +35,8 @@ function App() {
        
         
       </Switch>
+      
+      
     </Router>
   );
 }
