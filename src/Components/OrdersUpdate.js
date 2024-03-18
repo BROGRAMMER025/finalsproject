@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function OrdersUpdate() {
   const [packageId, setPackageId] = useState('');
@@ -106,6 +107,41 @@ function OrdersUpdate() {
           </Col>
         </Row>
       )}
+
+      {/* Footer */}
+<footer className="footer" style={{ backgroundColor: '#010101', color: 'white', position: 'fixed', bottom: 0, left: 0, right: 0, height: '120px' }}>
+  <div className="container-fluid">
+    <div className="row">
+
+      <div className="col-md-6">
+        <p style={{ color: 'gray', marginBottom: '5px' }}>
+          At SendIt, your delivery is our main priority. We obsess over customer satisfaction and getting your package there, wherever that may be.
+        </p>
+        <button className="btn btn-primary" style={{ marginBottom: '5px' }}>ABOUT US</button>
+      </div>
+
+      <div className="col-md-6">
+        <h4 style={{ color: 'white', marginBottom: '5px' }}>
+          <span style={{ position: 'relative', zIndex: 1, borderBottom: '2px solid #ff0000', paddingBottom: '3px' }}>ContactUs</span>
+          <span style={{ position: 'relative', zIndex: 0 }}></span>
+        </h4>
+        <p style={{ color: 'gray', marginBottom: '5px' }}>Feel free to reach out to us at any moment</p>
+        <Link to="/contact"> {/* Use Link component to navigate to ContactForm component */}
+          <button className="btn btn-primary" style={{ marginBottom: '5px' }}>ContactUs</button>
+        </Link>
+      </div>
+
+      {/* Copyright Notice */}
+      <div className="col-12 text-center" style={{ borderTop: '1px solid gray', paddingTop: '5px', marginTop: '5px' }}>
+        <p>© 2024 SendIt. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
     </Container>
   );
 }
