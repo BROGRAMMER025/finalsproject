@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { useSnackbar } from 'notistack';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,14 @@ function Orders({ refresh, setRefresh }) {
   });
 
   const [orderSubmitted, setOrderSubmitted] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const newWeight = e.target.value;
@@ -28,7 +36,9 @@ function Orders({ refresh, setRefresh }) {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     fetch('https://sendit-backend-lje2.onrender.com/orders', {
       method: 'POST',
       headers: {
@@ -74,10 +84,7 @@ function Orders({ refresh, setRefresh }) {
             <Card>
               <Card.Body>
                 <Card.Title className="text-center">Place an Order</Card.Title>
-                <Form onSubmit={(e) => {
-                  e.preventDefault();
-                  handleSubmit();
-                }}>
+                <Form onSubmit={handleSubmit}>
                   <Form.Group controlId="name">
                     <Form.Label>Name of Parcel:</Form.Label>
                     <Form.Control
