@@ -28,6 +28,18 @@ function OrdersUpdate() {
   };
 
   return (
+    <>
+      <style>
+        {`
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #CFD8DC;
+          }
+        `}
+      </style>
+    
     <Container className="mt-5">
       <Row className="justify-content-center">
         {/* First Card - Update Destination */}
@@ -143,6 +155,8 @@ function OrdersUpdate() {
 
 
     </Container>
+    </>
+    
   );
 }
 
