@@ -1,0 +1,76 @@
+.about-us-container {
+    margin-top: 20px;
+  }
+  
+  .about-us-content {
+    padding: 0 20px;
+  }
+  
+  .about-us-title {
+    font-size: 2rem;
+    color: #8a2be2; /* Purple */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-description {
+    color: #333; /* Dark gray */
+    margin-bottom: 30px;
+  }
+  
+  .mission-section,
+  .experience-section,
+  .reasons-section {
+    display: flex;
+    margin-top: 40px;
+  }
+  
+  .mission-text,
+  .experience-text,
+  .reasons-text {
+    flex: 1;
+  }
+  
+  .mission-image,
+  .experience-image,
+  .reasons-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mission-title,
+  .experience-title,
+  .reasons-title {
+    font-size: 1.5rem;
+    color: #8a2be2; /* Purple */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .mission-description,
+  .experience-description {
+    color: #333; /* Dark gray */
+    margin-bottom: 20px;
+  }
+  
+  .reasons-list {
+    color: #333; /* Dark gray */
+  }
+  
+  .reasons-list li {
+    margin-top: 10px;
+  }
+  
+  .reasons-list strong {
+    font-weight: bold;
+  }
+  
+  .highlighted-section {
+    padding: 20px;
+    border: 1px solid #8a2be2; /* Purple */
+    border-radius: 5px;
+    background-color: #62bbb4; /* Light gray */
+  }
+  

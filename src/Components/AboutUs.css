@@ -1,0 +1,141 @@
+.about-us-container {
+    margin-top: 20px;
+    background-color: #61dafb; /* Set background color */
+  }
+  
+  .about-us-content {
+    padding: 0 20px;
+  }
+  
+  .about-us-title {
+    font-size: 2rem;
+    color: #8a2be2; /* Purple */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-description {
+    color: #333; /* Dark gray */
+    margin-bottom: 30px;
+  }
+  
+  .mission-section,
+  .experience-section,
+  .reasons-section {
+    display: flex;
+    margin-top: 40px;
+  }
+  
+  .mission-text,
+  .experience-text,
+  .reasons-text {
+    flex: 1;
+  }
+  
+  .mission-image,
+  .experience-image,
+  .reasons-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mission-title,
+  .experience-title,
+  .reasons-title {
+    font-size: 1.5rem;
+    color: #8a2be2; /* Purple */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .mission-description,
+  .experience-description {
+    color: #333; /* Dark gray */
+    margin-bottom: 20px;
+  }
+  
+  .reasons-list {
+    color: #333; /* Dark gray */
+  }
+  
+  .reasons-list li {
+    margin-top: 10px;
+  }
+  
+  .reasons-list strong {
+    font-weight: bold;
+  }
+  
+  .highlighted-section {
+    padding: 20px;
+    /* Remove border and background color */
+  }
+  .about-us-container {
+    padding: 52px 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .about-us-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+  }
+  .about-us-content h2{
+    margin: 10px 0;
+  }
+  .text-gray-800{
+    font-size: 28px;
+    margin: 44px 0;
+  }
+  .section {
+    display: flex;
+    margin-bottom: 40px;
+  }
+  .section img{
+    width: 400px;
+  }
+  .section h3, .section p{
+    text-align: left;
+  }
+  .section p{
+    text-align: left;
+    font-size: 24px;
+  }
+  
+  .text {
+    flex: 2;
+    max-width: 50%;
+  }
+  
+  .image1,
+  .image2,
+  .image3 {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  img {
+    width: 100%; 
+    height: auto;
+  }
+  
+  h2 {
+    color: black;
+    font-size: 2em;
+    text-align: center;
+  }
+  
+  h3 {
+    color: #555;
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .highlighted-section{
+    text-align: left;
+  }
+  .highlighted-section li{
+list-style: none;
+font-size: 22px;  }

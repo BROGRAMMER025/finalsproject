@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AboutUs.css"
+//import "../styles/main.css"
 const AboutUs = () => {
   return (
     <div className="mt-20 ">
@@ -18,7 +18,7 @@ const AboutUs = () => {
                 </p>
             </div>
             <div className='image1 ml-10 flex justify-center'>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTniWXau0FxuT-msM27RawdAsT-UUN-P7J3Ew&usqp=CAU"alt='...' />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTniWXau0FxuT-msM27RawdAsT-UUN-P7J3Ew&usqp=CAU" />
             </div>
         </div>
 
@@ -55,7 +55,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className='image3 ml-10 flex justify-center'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV6zXz-18a0BFDNQzVxgGKsxeZUiYl3ZyJxQ&usqp=CAU" alt='...'/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR35RWIWHGmNHDgwSjPnTGmNOPBjINC9oEpPw&usqp=CAU" alt='...'/>
           </div>
         </div>
       </div>
