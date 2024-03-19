@@ -55,7 +55,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className='image3 ml-10 flex justify-center'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV6zXz-18a0BFDNQzVxgGKsxeZUiYl3ZyJxQ&usqp=CAU" alt='...'/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQncYvcXhvXgMtI9JG7aTnd1tolnrYpkaQQUw&usqp=CAU" alt='...'/>
           </div>
         </div>
       </div>
