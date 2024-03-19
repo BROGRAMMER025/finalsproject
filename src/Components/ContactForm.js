@@ -23,7 +23,7 @@ const ContactForm = () => {
     const form = e.target;
 
     try {
-      const response = await fetch('https://formspree.io/f/xrgnlzrn', {
+      const response = await fetch('https://formspree.io/f/mayrdjdd', {
         method: 'POST',
         body: new FormData(form),
         headers: {
@@ -51,8 +51,19 @@ const ContactForm = () => {
   };
 
   return (
+    <>
+      <style>
+        {`
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #CFD8DC;
+          }
+        `}
+      </style>
     <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-      <img src={`${process.env.PUBLIC_URL}/benjamin-sow-5hQMCo5qtSs-unsplash.jpg`} alt="Background" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: -1, opacity: 0.5 }} />
+      
       <div className="container-fluid d-flex justify-content-center align-items-center">
         <div className="card p-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
           <div className="title-container text-white p-3 mb-3 bg-primary text-center">
@@ -134,6 +145,7 @@ const ContactForm = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

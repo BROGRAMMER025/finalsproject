@@ -11,6 +11,7 @@ function Home() {
   };
 
   return (
+    
     <div style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/mehrnaz-taghavishavazi-tHE5_sUytWA-unsplash.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
       <Container fluid>
         {/* Navbar */}

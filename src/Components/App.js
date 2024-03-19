@@ -8,6 +8,7 @@ import Home from './Home';
 import Login from './Login';
 import Orders from './Orders';
 import OrdersUpdate from './OrdersUpdate';
+import AboutUs from './AboutUs';
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/orders" component={Orders}/>
         <Route path ="/ordersupdate" component={OrdersUpdate}/>
+        <Route path ="/aboutus" component={AboutUs}/>
        
        
         

@@ -3,9 +3,9 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function OrdersUpdate() {
-  const [packageId, setPackageId] = useState('');
+  const [trackingNumber ,setTrackingNumber] = useState('');
   const [newDestination, setNewDestination] = useState('');
-  const [newPickup, setNewPickup] = useState('');
+ 
   const [orderId, setOrderId] = useState('');
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
@@ -48,13 +48,13 @@ function OrdersUpdate() {
             <Card.Body>
               <Card.Title className="text-center">Update Destination</Card.Title>
               <Form onSubmit={handleNewDestinationSubmit}>
-                <Form.Group controlId="packageId">
-                  <Form.Label>Package ID:</Form.Label>
+                <Form.Group controlId="tracking_number">
+                  <Form.Label>tracking_number:</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    value={packageId}
-                    onChange={(e) => setPackageId(e.target.value)}
+                    value={trackingNumber}
+                    onChange={(e) => setTrackingNumber(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group controlId="newDestination">
@@ -65,15 +65,7 @@ function OrdersUpdate() {
                     value={newDestination}
                     onChange={(e) => setNewDestination(e.target.value)}
                   />
-                </Form.Group>
-                <Form.Group controlId="newPickup">
-                  <Form.Label>New Pickup:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={newPickup}
-                    onChange={(e) => setNewPickup(e.target.value)}
-                  />
+                
                 </Form.Group>
                 <Button variant="primary" type="submit" className="w-100">
                   Update Destination
@@ -90,11 +82,11 @@ function OrdersUpdate() {
               <Card.Title className="text-center">Cancel Order</Card.Title>
               <Form onSubmit={handleCancelOrderSubmit}>
                 <Form.Group controlId="orderId">
-                  <Form.Label>Order ID:</Form.Label>
+                  <Form.Label>tracking_number:</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    value={orderId}
+                    value={trackingNumber}
                     onChange={(e) => setOrderId(e.target.value)}
                   />
                 </Form.Group>

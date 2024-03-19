@@ -18,6 +18,7 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/Orders"  className="mx-4" >Orders</Nav.Link>
             <Nav.Link as={Link} to="/Ordersupdate"  className="mx-4" >OrdersUpdate</Nav.Link>
             <Nav.Link as={Link} to="/Login"  className="mx-4" >Login</Nav.Link>
+            <Nav.Link as={Link} to="/AboutUs"  className="mx-4" >AboutUs</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
