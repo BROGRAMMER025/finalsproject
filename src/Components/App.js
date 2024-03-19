@@ -31,6 +31,7 @@ function App() {
         <Route path="/contact" component={ContactForm} /> {/* Define Contact route */}
         
         <Route path="/login" component={Login} />
+        
         <Route path="/orders" component={Orders}/>
         <Route path ="/ordersupdate" component={OrdersUpdate}/>
         <Route path ="/aboutus" component={AboutUs}/>
