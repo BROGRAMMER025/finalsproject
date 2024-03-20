@@ -7,8 +7,7 @@ function SignupForm() {
     email: '',
     password: '',
     confirm_password: '',
-    // Removed secret_key from formData state initialization
-    role: 'user' // default role is set to 'user'
+    role: 'user' 
   });
 
   const handleChange = (e) => {
@@ -18,8 +17,9 @@ function SignupForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Ensure secret_key is not sent in the request
-    const { secret_key, ...submitFormData } = formData;
+
+    const submitFormData = formData.role === 'admin' ? formData : 
+      Object.fromEntries(Object.entries(formData).filter(([key]) => key !== 'secret_key'));
     try {
       const response = await axios.post('https://sendit-backend-e3x7.onrender.com/auth/signup', submitFormData);
       console.log('Signup successful:', response.data);
@@ -84,7 +84,34 @@ function SignupForm() {
                 required
               />
             </div>
-            {/* Removed the secret key field */}
+            {/* Conditionally render secret key field if role is admin */}
+            {formData.role === 'admin' && (
+              <div className="mb-3">
+                <label htmlFor="secret_key" className="form-label">Secret Key:</label>
+                <input
+                  type="password"
+                  id="secret_key"
+                  name="secret_key"
+                  value={formData.secret_key}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+            )}
+            <div className="mb-3">
+              <label htmlFor="role" className="form-label">Role:</label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="form-select"
+                required
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
             <button type="submit" className="btn btn-primary">Signup</button>
           </form>
         </div>
