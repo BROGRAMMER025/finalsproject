@@ -1,10 +1,10 @@
 import React from 'react';
-import "./AboutUs.css"
+import ".AboutUs.css"
 const AboutUs = () => {
   return (
     <div className="mt-20 ">
       <div className="about-us-content sm:px-2">
-        <h2 className="text-3xl text-start text-purple-700 font-bold font-primary mb-4">
+        {/* <h2 className="text-3xl text-start text-purple-700 font-bold font-primary mb-4*/}
             Welcome to SendiT Delivery
         </h2>
         <p className="mb-6 text-gray-800">

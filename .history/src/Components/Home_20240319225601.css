@@ -9,13 +9,13 @@
 
 :root {
   --mainColor: #29335c;
-  --mainColorLight: #37999c;
+  --mainColorLight: #5767aa;
   --secondaryColor: #db2b39;
   --textColor: #e7dfdf;
-  background-color: rgb(142, 233, 233);
+  background-color: rgb(91, 199, 168);
 }
 .LOGO{
-  color: #f1f0f7;
+  color: #c95a5a;
 }
 header {
   display: flex;

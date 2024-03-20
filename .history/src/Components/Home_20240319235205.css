@@ -9,13 +9,13 @@
 
 :root {
   --mainColor: #29335c;
-  --mainColorLight: #37999c;
+  --mainColorLight: #5767aa;
   --secondaryColor: #db2b39;
   --textColor: #e7dfdf;
   background-color: rgb(142, 233, 233);
 }
 .LOGO{
-  color: #f1f0f7;
+  color: #c95a5a;
 }
 header {
   display: flex;
@@ -154,7 +154,7 @@ nav {
 /* about */
 .about-us-container {
     padding: 52px 20px;
-    background-color: #f5f5f5;
+    background-color: #76e0e7;
   }
   
   .about-us-content {
