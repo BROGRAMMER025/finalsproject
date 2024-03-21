@@ -104,7 +104,7 @@ function UserParcels() {
         return;
       }
   
-      await axios.put(`https://sendit-backend-e3x7.onrender.com/parcel/cancel/${parcelId}`, { status: 'Canceled' }, {
+      await axios.put(`https://sendit-backend-e3x7.onrender.com/parcel/cancel/${parcelId}`, { status: 'canceled' }, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
