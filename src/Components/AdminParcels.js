@@ -155,78 +155,80 @@ function AdminParcels() {
 
   const filteredParcels = statusFilter ? parcels.filter(parcel => parcel.status.toLowerCase() === statusFilter) : parcels;
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col>
-          {error && <Alert variant="danger" className="fade show">{error}</Alert>}
-          {successMessage && <Alert variant="success" className="fade show">{successMessage}</Alert>}
-          <h2 className="text-center mb-4">All Parcels</h2>
-          <Form.Group className="mb-3">
-            <Form.Label>Filter by Status:</Form.Label>
-            <Form.Select as="select" value={statusFilter} onChange={handleStatusFilterChange}>
-              <option value="">All</option>
-              <option value="pending">Pending</option>
-              <option value="in transit">In Transit</option>
-              <option value="delivered">Delivered</option>
-              <option value="canceled">Cancelled</option>
-            </Form.Select>
-          </Form.Group>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>User ID</th>
-                <th>Tracking Number</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Destination</th>
-                <th>Pickup Location</th>
-                <th>Weight</th>
-                <th>Current Status</th>
-                <th>Change Status</th>
-                <th>New Location</th>
-                <th>Update Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredParcels.map(parcel => (
-                <tr key={parcel.tracking_number}>
-                  <td>{parcel.user_id}</td>
-                  <td>{parcel.tracking_number}</td>
-                  <td>{parcel.name}</td>
-                  <td>{parcel.description}</td>
-                  <td>{parcel.destination_location}</td>
-                  <td>{parcel.pickup_location}</td>
-                  <td>{parcel.weight}</td>
-                  <td>{parcel.status}</td>
-                  <td>
-                    {parcel.status !== "canceled" && parcel.status !== "delivered" && (
-                      <Form.Select
-                        value={parcel.status}
-                        onChange={(e) => handleStatusChange(parcel.tracking_number, e.target.value)}
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="in transit">In Transit</option>
-                        <option value="delivered">Delivered</option>
-                      </Form.Select>
-                    )}
-                  </td>
-                  <td>
-                    <Form.Control
-                      type="text"
-                      value={newLocations[parcel.tracking_number] || ''}
-                      onChange={(e) => handleNewLocationChange(e, parcel.tracking_number)}
-                    />
-                  </td>
-                  <td>
-                    <Button variant="primary" onClick={() => handleLocationChange(parcel.tracking_number)}>Update</Button>
-                  </td>
+    <div className="page-wrapper" style={{ paddingBottom: "150px" }}>
+      <Container className="mt-5">
+        <Row>
+          <Col>
+            {error && <Alert variant="danger" className="fade show">{error}</Alert>}
+            {successMessage && <Alert variant="success" className="fade show">{successMessage}</Alert>}
+            <h2 className="text-center mb-4">All Parcels</h2>
+            <Form.Group className="mb-3">
+              <Form.Label>Filter by Status:</Form.Label>
+              <Form.Select as="select" value={statusFilter} onChange={handleStatusFilterChange}>
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="in transit">In Transit</option>
+                <option value="delivered">Delivered</option>
+                <option value="canceled">Cancelled</option>
+              </Form.Select>
+            </Form.Group>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Tracking Number</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Destination</th>
+                  <th>Pickup Location</th>
+                  <th>Weight</th>
+                  <th>Current Status</th>
+                  <th>Change Status</th>
+                  <th>New Location</th>
+                  <th>Update Location</th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
-    </Container>
+              </thead>
+              <tbody>
+                {filteredParcels.map(parcel => (
+                  <tr key={parcel.tracking_number}>
+                    <td>{parcel.user_id}</td>
+                    <td>{parcel.tracking_number}</td>
+                    <td>{parcel.name}</td>
+                    <td>{parcel.description}</td>
+                    <td>{parcel.destination_location}</td>
+                    <td>{parcel.pickup_location}</td>
+                    <td>{parcel.weight}</td>
+                    <td>{parcel.status}</td>
+                    <td>
+                      {parcel.status !== "canceled" && parcel.status !== "delivered" && (
+                        <Form.Select
+                          value={parcel.status}
+                          onChange={(e) => handleStatusChange(parcel.tracking_number, e.target.value)}
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="in transit">In Transit</option>
+                          <option value="delivered">Delivered</option>
+                        </Form.Select>
+                      )}
+                    </td>
+                    <td>
+                      <Form.Control
+                        type="text"
+                        value={newLocations[parcel.tracking_number] || ''}
+                        onChange={(e) => handleNewLocationChange(e, parcel.tracking_number)}
+                      />
+                    </td>
+                    <td>
+                      <Button variant="primary" onClick={() => handleLocationChange(parcel.tracking_number)}>Update</Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 export default AdminParcels;
