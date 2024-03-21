@@ -33,7 +33,7 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-primary" expanded={expanded} onToggle={() => setExpanded(!expanded)}>
+    <Navbar expand="lg" className="bg-primary" expanded={expanded} onToggle={() => setExpanded(!expanded)} fluid="true">
       <Container fluid>
         <Navbar.Brand as={Link} to="/" className="me-auto flex-grow-1">SENDIT</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

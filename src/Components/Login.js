@@ -8,30 +8,34 @@ export default function LoginForm() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const logInUser = () => {
-    if (username.length === 0) {
-      alert("Please enter Username!");
-    } else if (password.length === 0) {
-      alert("Password has been left blankPlease enter password !");
-    } else {
-      axios.post('https://sendit-backend-e3x7.onrender.com/auth/login', {
-        username: username,
-        password: password
+  const trimmedUsername = username.trim();
+  const trimmedPassword = password.trim();
+
+  if (trimmedUsername.length === 0) {
+    alert("Please enter Username!");
+  } else if (trimmedPassword.length === 0) {
+    alert("Please enter Password!");
+  } else {
+    axios.post('https://sendit-backend-e3x7.onrender.com/auth/login', {
+      username: trimmedUsername,
+      password: trimmedPassword
+    })
+      .then(function (response) {
+        console.log(response);
+        const accessToken = response.data.access_token;
+        localStorage.setItem('access_token', accessToken);
+        setIsLoggedIn(true);
+        window.location.href = "/";
       })
-        .then(function (response) {
-          console.log(response);
-          const accessToken = response.data.access_token;
-          localStorage.setItem('access_token', accessToken);
-          setIsLoggedIn(true);
-          window.location.href = "/";
-        })
-        .catch(function (error) {
-          console.error('Login failed:', error.response.data);
-          if (error.response.status === 401) {
-            alert("Invalid credentials");
-          }
-        });
-    }
-  };
+      .catch(function (error) {
+        console.error('Login failed:', error.response.data);
+        if (error.response.status === 401) {
+          alert("Invalid credentials");
+        }
+      });
+  }
+};
+  
 
   useEffect(() => {
     const accessToken = localStorage.getItem('access_token');
@@ -70,7 +74,8 @@ export default function LoginForm() {
                   placeholder="Enter Password"
                 />
               </div>
-              <button type="button" className="btn btn-primary" onClick={logInUser}>Login</button>
+              <button type="button" className="btn btn-primary" onClick={logInUser} disabled={!username || !password}>Login</button>
+
             </form>
           </div>
         </div>

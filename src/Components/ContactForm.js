@@ -53,7 +53,7 @@ const ContactForm = () => {
   };
 
   return (
-    <>
+    <div className="page-wrapper" style={{ paddingTop: "50px", paddingBottom: "150px" }}>
       {showSuccessMessage && (
         <div className="alert alert-success mt-3" role="alert">
           Your message has been sent successfully!
@@ -143,12 +143,11 @@ const ContactForm = () => {
                   <Globe /> sendit.com
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
