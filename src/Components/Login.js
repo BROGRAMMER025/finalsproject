@@ -1,57 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import NavBar from "./NavBar";
 
-function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export default function LoginForm() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (name === 'email') setEmail(value);
-        if (name === 'password') setPassword(value);
-    };
+  const logInUser = () => {
+    if (username.length === 0) {
+      alert("Please enter Username!");
+    } else if (password.length === 0) {
+      alert("Password has been left blankPlease enter password !");
+    } else {
+      axios.post('https://sendit-backend-e3x7.onrender.com/auth/login', {
+        username: username,
+        password: password
+      })
+        .then(function (response) {
+          console.log(response);
+          const accessToken = response.data.access_token;
+          localStorage.setItem('access_token', accessToken);
+          setIsLoggedIn(true);
+          window.location.href = "/";
+        })
+        .catch(function (error) {
+          console.error('Login failed:', error.response.data);
+          if (error.response.status === 401) {
+            alert("Invalid credentials");
+          }
+        });
+    }
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Store email and password in local storage
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userPassword', password);
-        
-        console.log(`Login with: ${email}, ${password}`); 
-    
-        setEmail('');
-        setPassword('');
-    };
+  useEffect(() => {
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
-    return (
-        <form onSubmit={handleSubmit} className="container">
-            <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email Address</label>
-                <input 
-                    type="email" 
-                    className="form-control" 
-                    id="email" 
-                    name="email"
-                    value={email} 
-                    onChange={handleInputChange} 
-                    style={{ letterSpacing: '1px' }} 
-                    required 
+  return (
+    <>
+      {isLoggedIn && <NavBar />}
+      <div className="container mt-5">
+        <div className="card mx-auto" style={{ maxWidth: '400px' }}>
+          <div className="card-body">
+            <h2 className="card-title mb-4">Log In</h2>
+            <form>
+              <div className="mb-3">
+                <label htmlFor="username" className="form-label">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="form-control"
+                  placeholder="Enter Username"
                 />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input 
-                    type="password" 
-                    className="form-control" 
-                    id="password" 
-                    name="password"
-                    value={password} 
-                    onChange={handleInputChange} 
-                    required 
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-control"
+                  placeholder="Enter Password"
                 />
-            </div>
-            <button type="submit" className="btn btn-primary">Login</button>
-        </form>
-    );
+              </div>
+              <button type="button" className="btn btn-primary" onClick={logInUser}>Login</button>
+            </form>
+            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/signup" className="link-danger">Register</a></p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
-
-export default LoginForm;

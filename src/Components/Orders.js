@@ -1,196 +1,144 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { useSnackbar } from 'notistack';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function Orders({ refresh, setRefresh }) {
-  const { enqueueSnackbar } = useSnackbar();
-
-  const [orderData, setOrderData] = useState({
-    name: '',
-    description:'',
-    destination_location: '',
-    pickup_location: '',
-    weight: '',
-    price: 0,
-  });
-
-  const [orderSubmitted, setOrderSubmitted] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+function Order() {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [pickupLocation, setPickupLocation] = useState('');
+  const [destinationLocation, setDestinationLocation] = useState('');
+  const [weight, setWeight] = useState('');
+  const [price, setPrice] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      setLoggedIn(true);
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      navigate('/login');
     }
-  }, []);
+  }, [navigate]);
 
-  const handleChange = (e) => {
-    const newWeight = e.target.value;
-    const calculatedPrice = parseInt(newWeight, 10) * 150;
-
-    setOrderData({
-      ...orderData,
-      [e.target.name]: newWeight,
-      price: calculatedPrice,
-    });
+  const calculatePrice = () => {
+    const weightInKg = parseFloat(weight);
+    if (!isNaN(weightInKg)) {
+      const totalPrice = weightInKg * 200; 
+      setPrice(totalPrice.toFixed(2));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    fetch('https://sendit-backend-lje2.onrender.com/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify(orderData),
-      mode: 'cors',
-    })
-      .then((response) => {
-        if (response.status === 201) {
-          setOrderSubmitted(true);
-          enqueueSnackbar('Order submitted successfully', { variant: 'success' });
-        } else if (response.status === 401) {
-          enqueueSnackbar('Unauthorized access. Please log in.', {
-            variant: 'error',
-          });
-          window.location.href = '/login'; // Redirect to login page
-        } else {
-          enqueueSnackbar('Failed to submit order', { variant: 'error' });
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error.message);
-      });
+    try {
+      const accessToken = localStorage.getItem('access_token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      await axios.post('https://sendit-backend-e3x7.onrender.com/parcel', {
+        name,
+        description,
+        pickup_location: pickupLocation,
+        destination_location: destinationLocation,
+        weight: parseFloat(weight),
+        price,
+      }, config);
+
+      navigate('/userparcels');
+    } catch (error) {
+      console.error('Error adding order:', error);
+      alert('Failed to create order');
+    }
   };
 
   return (
-    <>
-      <style>
-        {`
-          html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #CFD8DC;
-          }
-        `}
-      </style>
-      <Container className="mt-5">
-        <Row className="justify-content-center">
-          <Col md={6}>
-            <Card>
-              <Card.Body>
-                <Card.Title className="text-center">Place an Order</Card.Title>
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="name">
-                    <Form.Label>Name of Parcel:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      name="name"
-                      value={orderData.name}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="description">
-                    <Form.Label>Parcel Description:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      name="description"
-                      value={orderData.description}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="destination_location">
-                    <Form.Label>Destination:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      name="destination_location"
-                      value={orderData.destination_location}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                  
-                  <Form.Group controlId="pickup_location">
-                    <Form.Label>Pickup Location:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      name="pickup_location"
-                      value={orderData.pickup_location}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="weight">
-                    <Form.Label>Weight:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      name="weight"
-                      value={orderData.weight}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                  {orderData.weight && (
-                    <p className="text-muted mb-3">
-                      Estimated Price: Ksh {orderData.price}
-                    </p>
-                  )}
-                  <Button variant="primary" type="submit">
-                    Place Order
-                  </Button>
-                </Form>
-                {orderSubmitted && (
-                  <Card className="mt-3">
-                    <Card.Body>
-                      <Card.Title className="text-center">Order Submitted Successfully</Card.Title>
-                    </Card.Body>
-                  </Card>
+    <div className="container mt-4">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card border-primary" style={{ borderWidth: '2px' }}>
+            <div className="card-body">
+              <h1 className="text-center mb-4">New Order</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name</label>
+                  <input
+                    type='text'
+                    id='name'
+                    placeholder='Order Name'
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    className="form-control"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="description" className="form-label">Description</label>
+                  <textarea
+                    id="description"
+                    placeholder='Description of the order'
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                    required
+                    className="form-control"
+                  ></textarea>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="pickupLocation" className="form-label">Pickup Location</label>
+                  <input
+                    type='text'
+                    id='pickupLocation'
+                    placeholder='Pickup Location'
+                    value={pickupLocation}
+                    onChange={e => setPickupLocation(e.target.value)}
+                    className="form-control"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="destinationLocation" className="form-label">Destination Location</label>
+                  <input
+                    type='text'
+                    id='destinationLocation'
+                    placeholder='Destination Location'
+                    value={destinationLocation}
+                    onChange={e => setDestinationLocation(e.target.value)}
+                    className="form-control"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="weight" className="form-label">Weight (kg)</label>
+                  <input
+                    type='number'
+                    id='weight'
+                    placeholder='Weight'
+                    value={weight}
+                    onChange={e => {
+                      setWeight(e.target.value);
+                      calculatePrice();
+                    }}
+                    className="form-control"
+                    required
+                  />
+                </div>
+                {price && (
+                  <div className="mb-3">
+                    <label htmlFor="price" className="form-label">Price (Ksh)</label>
+                    <p className="form-control-static">Ksh. {price}</p>
+                  </div>
                 )}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        {/* Footer */}
-        <footer className="footer" style={{ backgroundColor: '#010101', color: 'white', position: 'fixed', bottom: 0, left: 0, right: 0, height: '120px' }}>
-          <div className="container-fluid">
-            <div className="row">
-
-              <div className="col-md-6">
-                <p style={{ color: 'gray', marginBottom: '5px' }}>
-                  At SendIt, your delivery is our main priority. We obsess over customer satisfaction and getting your package there, wherever that may be.
-                </p>
-                <button className="btn btn-primary" style={{ marginBottom: '5px' }}>ABOUT US</button>
-              </div>
-
-              <div className="col-md-6">
-                <h4 style={{ color: 'white', marginBottom: '5px' }}>
-                  <span style={{ position: 'relative', zIndex: 1, borderBottom: '2px solid #ff0000', paddingBottom: '3px' }}>ContactUs</span>
-                  <span style={{ position: 'relative', zIndex: 0 }}></span>
-                </h4>
-                <p style={{ color: 'gray', marginBottom: '5px' }}>Feel free to reach out to us at any moment</p>
-                <Link to="/contact"> {/* Use Link component to navigate to ContactForm component */}
-                  <button className="btn btn-primary" style={{ marginBottom: '5px' }}>ContactUs</button>
-                </Link>
-              </div>
-
-              {/* Copyright Notice */}
-              <div className="col-12 text-center" style={{ borderTop: '1px solid gray', paddingTop: '5px', marginTop: '5px' }}>
-                <p>© 2024 SendIt. All rights reserved.</p>
-              </div>
+                <div className="text-center">
+                  <button type='submit' className="btn btn-primary" style={{ transition: 'all 0.3s', fontWeight: 'bold' }}>Create Order</button>
+                </div>
+              </form>
             </div>
           </div>
-        </footer>
-      </Container>
-    </>
+        </div>
+      </div>
+    </div>
   );
 }
 
-export default Orders;
+export default Order;

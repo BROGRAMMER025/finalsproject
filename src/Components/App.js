@@ -1,53 +1,42 @@
-import React from 'react';
-
-
-import ContactForm from './ContactForm'; 
-import NavBar from './NavBar';
-
-import Home from './Home';
-import SignUp from './SignUp'
-import Login from './Login';
-import Orders from './Orders';
-import OrdersUpdate from './OrdersUpdate';
-import AboutUs from './AboutUs';
-
-
-
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import NavBar from './NavBar'; 
+import Home from './Home';
+import ContactForm from './ContactForm'; 
+import Login from './Login';
+import Orders from './Orders';
+import UserParcels from './UserParcels';
+import AdminParcels from './AdminParcels';
+import AboutUs from './AboutUs';
+import SignUp from './SignUp';
+import Footer from './Footer';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    setIsLoggedIn(false);
+  };
+
   return (
-    <Router>
-      
-      <NavBar/>
-      <Switch>
-     
-        
-        <Route  exact path="/" component={Home} /> {/* Define Home route */}
-        
-        <Route path="/contact" component={ContactForm} /> {/* Define Contact route */}
-        
-        <Route path="/login" component={Login} />
-        
-        <Route path="/orders" component={Orders}/>
-        <Route path ="/ordersupdate" component={OrdersUpdate}/>
-        <Route path ="/aboutus" component={AboutUs}/>
-        <Route path="/SignUp" component={SignUp}/>
-       
-       
-        
-      </Switch>
-      
-      
+    <Router>   
+      <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Routes>
+        <Route  exact path="/" element={<Home/>} />      
+        <Route path="/contact" element={<ContactForm/>} />      
+        <Route path="/login" element={<Login/>} />      
+        <Route path="/orders" element={<Orders/>}/>
+        <Route path="/userparcels" element={<UserParcels/>} />
+        <Route path="/adminparcels" element={<AdminParcels/>} />
+        <Route path="/aboutus" element={<AboutUs/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+      </Routes>
+      <Footer/>
     </Router>
   );
 }
-
-
-
 
 export default App;

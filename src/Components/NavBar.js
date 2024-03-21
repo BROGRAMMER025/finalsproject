@@ -1,8 +1,33 @@
-import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Navbar, Container, Nav, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showLogoutMessage) {
+      setTimeout(() => {
+        setShowLogoutMessage(false);
+      }, 3000);
+    }
+  }, [showLogoutMessage]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    setIsLoggedIn(false);
+    setShowLogoutMessage(true);
+    window.location.href = "/";
+  };
+
   return (
     <Navbar expand="lg" className="bg-primary">
       <Container>
@@ -11,18 +36,24 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/" className="mx-4">Home</Nav.Link>
-           
-            <Nav.Link as={Link} to="/contact" className="mx-4">Contact</Nav.Link> {/* Add Contact link */}
-            
-           
             <Nav.Link as={Link} to="/Orders"  className="mx-4" >Orders</Nav.Link>
-            <Nav.Link as={Link} to="/Ordersupdate"  className="mx-4" >OrdersUpdate</Nav.Link>
-            <Nav.Link as={Link} to="/Login"  className="mx-4" >Login</Nav.Link>
+            <Nav.Link as={Link} to="/userparcels"  className="mx-4" >Parcels</Nav.Link>
+            <Nav.Link as={Link} to="/adminparcels"  className="mx-4" >AdminParcels</Nav.Link>
             <Nav.Link as={Link} to="/AboutUs"  className="mx-4" >AboutUs</Nav.Link>
-            <Nav.Link as={Link} to="/SignUp"  className="mx-4" >SignUp</Nav.Link>
+            <Nav.Link as={Link} to="/contact" className="mx-4">Contact</Nav.Link> 
+            {isLoggedIn ? (
+              <Nav.Link onClick={handleLogout} className="mx-4">Logout</Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/Login"  className="mx-4" >Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
+      {showLogoutMessage && (
+        <Alert variant="success" className="position-fixed top-0 start-50 translate-middle-x mt-2">
+          Logged out successfully
+        </Alert>
+      )}
     </Navbar>
   );
 };
