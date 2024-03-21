@@ -84,7 +84,7 @@ function SignupForm() {
                 required
               />
             </div>
-            {/* Conditionally render secret key field if role is admin */}
+            
             {formData.role === 'admin' && (
               <div className="mb-3">
                 <label htmlFor="secret_key" className="form-label">Secret Key:</label>
@@ -114,7 +114,6 @@ function SignupForm() {
             </div>
             <button type="submit" className="btn btn-primary">Signup</button>
           </form>
-          <p className="small fw-bold mt-2 pt-1 mb-0">Have an account? <a href="/login" className="link-success">Login</a></p>
         </div>
       </div>
     </div>
