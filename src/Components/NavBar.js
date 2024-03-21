@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ isLoggedIn, handleLogout }) => {
   return (
     <Navbar expand="lg" className="bg-primary">
       <Container>
@@ -11,15 +11,16 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/" className="mx-4">Home</Nav.Link>
-           
-            <Nav.Link as={Link} to="/contact" className="mx-4">Contact</Nav.Link> {/* Add Contact link */}
+            <Nav.Link as={Link} to="/orders" className="mx-4">Orders</Nav.Link>
+            <Nav.Link as={Link} to="/ordersupdate" className="mx-4">OrdersUpdate</Nav.Link>
+            <Nav.Link as={Link} to="/contact" className="mx-4">Contact</Nav.Link>
+            <Nav.Link as={Link} to="/aboutus" className="mx-4">AboutUs</Nav.Link>
             
-           
-            <Nav.Link as={Link} to="/Orders"  className="mx-4" >Orders</Nav.Link>
-            <Nav.Link as={Link} to="/Ordersupdate"  className="mx-4" >OrdersUpdate</Nav.Link>
-            <Nav.Link as={Link} to="/Login"  className="mx-4" >Login</Nav.Link>
-            <Nav.Link as={Link} to="/AboutUs"  className="mx-4" >AboutUs</Nav.Link>
-            <Nav.Link as={Link} to="/SignUp"  className="mx-4" >SignUp</Nav.Link>
+            {isLoggedIn ? (
+              <Nav.Link onClick={handleLogout} className="mx-4">Logout</Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/login" className="mx-4">Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
