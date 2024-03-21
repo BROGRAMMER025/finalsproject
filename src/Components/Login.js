@@ -72,7 +72,6 @@ export default function LoginForm() {
               </div>
               <button type="button" className="btn btn-primary" onClick={logInUser}>Login</button>
             </form>
-            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/signup" className="link-danger">Register</a></p>
           </div>
         </div>
       </div>
