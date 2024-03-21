@@ -5,7 +5,7 @@ import deliveries from "../images/deliveries.svg";
 
 const Home = () => {
   return (
-    <>
+    <div className="page-wrapper" style={{ paddingBottom: "150px" }}>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-6">
@@ -61,9 +61,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default Home;
-
