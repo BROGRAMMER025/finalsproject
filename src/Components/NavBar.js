@@ -50,8 +50,8 @@ const NavBar = () => {
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
               ) : (
                 <>
-                  <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/signup">Signup</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/login" onClick={() => setExpanded(false)}>Login</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/signup" onClick={() => setExpanded(false)}>Signup</NavDropdown.Item>
                 </>
               )}
             </NavDropdown>
