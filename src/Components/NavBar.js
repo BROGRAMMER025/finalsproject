@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Container, Nav, Alert } from 'react-bootstrap';
+import { Navbar, Container, Nav, Alert, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,11 +45,16 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/adminparcels" className="mx-4" onClick={() => setExpanded(false)}>AdminParcels</Nav.Link>
             <Nav.Link as={Link} to="/AboutUs" className="mx-4" onClick={() => setExpanded(false)}>AboutUs</Nav.Link>
             <Nav.Link as={Link} to="/contact" className="mx-4" onClick={() => setExpanded(false)}>Contact</Nav.Link>
-            {isLoggedIn ? (
-              <Nav.Link onClick={handleLogout} className="mx-4">Logout</Nav.Link>
-            ) : (
-              <Nav.Link as={Link} to="/Login" className="mx-4" onClick={() => setExpanded(false)}>Login</Nav.Link>
-            )}
+            <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="basic-nav-dropdown" className="mx-4">
+              {isLoggedIn ? (
+                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              ) : (
+                <>
+                  <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/signup">Signup</NavDropdown.Item>
+                </>
+              )}
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
