@@ -77,7 +77,7 @@ function Order() {
                   <label htmlFor="description" className="form-label">Description</label>
                   <textarea
                     id="description"
-                    placeholder='Description of the order'
+                    placeholder=''
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                     required
@@ -89,7 +89,7 @@ function Order() {
                   <input
                     type='text'
                     id='pickupLocation'
-                    placeholder='Pickup Location'
+                    placeholder='e.g .,Nairobi'
                     value={pickupLocation}
                     onChange={e => setPickupLocation(e.target.value)}
                     className="form-control"
@@ -101,7 +101,7 @@ function Order() {
                   <input
                     type='text'
                     id='destinationLocation'
-                    placeholder='Destination Location'
+                    placeholder='e.g ., Nakuru'
                     value={destinationLocation}
                     onChange={e => setDestinationLocation(e.target.value)}
                     className="form-control"
@@ -113,7 +113,7 @@ function Order() {
                   <input
                     type='number'
                     id='weight'
-                    placeholder='Weight'
+                    placeholder=''
                     value={weight}
                     onChange={e => {
                       setWeight(e.target.value);
