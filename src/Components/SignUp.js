@@ -23,10 +23,10 @@ function SignupForm() {
     try {
       const response = await axios.post('https://sendit-backend-e3x7.onrender.com/auth/signup', submitFormData);
       console.log('Signup successful:', response.data);
-      // Optionally, redirect the user or display a success message
+      
     } catch (error) {
       console.error('Signup failed:', error.response.data);
-      // Handle errors, such as displaying error messages to the user
+    
     }
   };
 
@@ -114,6 +114,7 @@ function SignupForm() {
             </div>
             <button type="submit" className="btn btn-primary">Signup</button>
           </form>
+          <p className="small fw-bold mt-2 pt-1 mb-0">Have an account? <a href="/login" className="link-success">Login</a></p>
         </div>
       </div>
     </div>
