@@ -30,7 +30,7 @@ function SignupForm() {
   };
 
   return (
-    <div className="container mt-5" style={{ minHeight: '500px' }}>
+    <div className="container mt-5" style={{ minHeight: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
       <div className="card mx-auto" style={{ maxWidth: '400px' }}>
         <div className="card-body">
           <h2 className="card-title mb-4">Sign Up</h2>
@@ -111,7 +111,9 @@ function SignupForm() {
                 <option value="admin">Admin</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-primary" style={{ position: 'relative', zIndex: '1' }}>Signup</button>
+            <div className="d-grid">
+              <button type="submit" className="btn btn-primary">Signup</button>
+            </div>
           </form>
         </div>
       </div>
