@@ -26,12 +26,11 @@ function SignupForm() {
       
     } catch (error) {
       console.error('Signup failed:', error.response.data);
-    
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5" style={{ minHeight: '500px' }}>
       <div className="card mx-auto" style={{ maxWidth: '400px' }}>
         <div className="card-body">
           <h2 className="card-title mb-4">Sign Up</h2>
@@ -112,7 +111,7 @@ function SignupForm() {
                 <option value="admin">Admin</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-primary">Signup</button>
+            <button type="submit" className="btn btn-primary" style={{ position: 'relative', zIndex: '1' }}>Signup</button>
           </form>
         </div>
       </div>
